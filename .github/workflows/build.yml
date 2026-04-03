@@ -55,7 +55,9 @@ jobs:
         sed -i 's/.wine-appimage-stable/.config\/Deffy_AppImage/g' wrapper # Change config folder
 
         echo '#!/bin/bash
+        set -x
         HERE=$(cd "${0%/*}" && echo $PWD)
+        echo "HOME: $HOME"
         if [ "$HOME" != "" ]; then # If use --appimage-portable-home
             mkdir "$HOME/.config/"
         fi
