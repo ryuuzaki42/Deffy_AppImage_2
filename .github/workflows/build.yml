@@ -41,17 +41,24 @@ jobs:
         set -x
         version=$(grep -o "Deffy:.*" README.md | cut -d ' ' -f2)
         echo "Deffy version: $version"
-        #rm -rv .git/ .github/ .gitignore
-
-        cd AppDir/
-        pwd; ls -lah
-        rm .DirIcon wine.svg org.winehq.wine.desktop
-        cd ../
 
         cp Deffy.desktop AppDir/
         cp Deffy.png AppDir/
         cp Deffy.exe AppDir/
 
+        cd AppDir/
+        pwd; ls -lah
+        rm .DirIcon wine.svg org.winehq.wine.desktop
+
+        mv AppRun AppRun_2
+        mv AppRun.env AppRun_2.env
+
+        echo '#!/bin/bash
+        HERE=$(cd "${0%/*}" && echo $PWD)
+        "$HERE"/AppRun_2 "$HERE"/Deffy.exe' > AppRun
+        chmod +x AppRun
+
+        cd ../
         ARCH=x86_64 VERSION="${version}-1_JB" ./appimagetool-x86_64.AppImage AppDir/
         pwd; ls -lah
 
