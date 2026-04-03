@@ -56,8 +56,8 @@ jobs:
 
         echo '#!/bin/bash
         HERE=$(cd "${0%/*}" && echo $PWD)
-        if [ "$XDG_CONFIG_HOME" != "" ]; then # If use --appimage-portable-config
-            mkdir "$XDG_CONFIG_HOME/.config/"
+        if [ "$HOME" != "" ]; then # If use --appimage-portable-home
+            mkdir "$HOME/.config/"
         fi
         "$HERE"/AppRun_2 "$HERE"/Deffy.exe' > AppRun
         chmod +x AppRun
