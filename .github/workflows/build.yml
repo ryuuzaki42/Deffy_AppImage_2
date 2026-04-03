@@ -17,11 +17,9 @@ jobs:
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
-    - name: appimagetool
+    - name: Get appimagetool
       run: |
         set -x
-        cd ../
-
         #wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         version_go_appimage=$(wget -q -O - https://api.github.com/repos/probonopd/go-appimage/releases | grep "\"name.*appimagetool-.*-x86_64.AppImage\"" | head -n 1 | cut -d '-' -f2)
         echo "version_go_appimage: $version_go_appimage"
@@ -48,11 +46,11 @@ jobs:
         cd AppDir/
         pwd; ls -lah
         rm .DirIcon wine.svg org.winehq.wine.desktop
-
-        cp ../Deffy.desktop AppDir/
-        cp ../Deffy.png AppDir/
-
         cd ../
+
+        cp Deffy.desktop AppDir/
+        cp Deffy.png AppDir/
+
         ARCH=x86_64 VERSION="${version}-1_JB" ./appimagetool-x86_64.AppImage Deffy_AppImage/
         pwd; ls -lah
 
