@@ -29,12 +29,22 @@ jobs:
         chmod +x appimagetool-x86_64.AppImage
         pwd; ls -lah
 
+    - name: Get wine AppImage
+      run: |
+        set -x
+        wget -q https://github.com/mmtrt/WINE_AppImage/releases/download/continuous-stable/wine-stable_11.0-x86_64.AppImage
+        fileName=$(ls wine*.AppImage)
+        chmod +x "$fileName"
+        ./"$fileName" --appimage-extract
+        pwd; ls -lah
+
     - name: Make AppImage
       run: |
         set -x
         version=$(grep -o "Deffy:.*" README.md | cut -d ' ' -f2)
         echo "Deffy version: $version"
-        rm -rv .git/ .github/ .gitignore
+        rm -rv .git/ .github/ 
+        #rm .gitignore
 
         cd ../
         ARCH=x86_64 VERSION="${version}-1_JB" ./appimagetool-x86_64.AppImage Deffy_AppImage/
