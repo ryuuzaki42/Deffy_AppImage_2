@@ -48,7 +48,7 @@ jobs:
         #cp Deffy.exe AppDir/
 
         cd AppDir/
-        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.desktop
+        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/${version}_0_exe/Deffy.desktop
         wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.png
         wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.exe
         pwd; ls -lah
