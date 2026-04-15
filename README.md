@@ -8,10 +8,10 @@ Deffy converts DFF files (either containing DSD or DST) to DSF files or converts
 https://www.mymymyohmy.com/software/deffy.html
 
 ## Repository: https://github.com/ryuuzaki42/Deffy_AppImage
-    Deffy: 6.0.0
+    Deffy: 6.0.1
 
 ---
-## Using Wine in AppImage from from https://github.com/mmtrt/WINE_AppImage - Stable 
+## Using Wine in AppImage from https://github.com/mmtrt/WINE_AppImage - Stable 
 ### Change made:
 
 #### Remove 32 bits
