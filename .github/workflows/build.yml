@@ -77,8 +77,11 @@ jobs:
         if [ "$HOME" != "" ]; then # If use --appimage-portable-home
             mkdir "$HOME/.config/"
         fi
-        mkdir -p /dev/shm/Deffy
-        WINEDLLOVERRIDES="mscoree=d;mshtml=d" WINEPREFIX=/dev/shm/Deffy "$HERE"/AppRun_2 "$HERE"/Deffy.exe' > AppRun
+
+        folder_name_RAM="Deffy_AppImage_$(date +%d_%m_%Y)"
+        mkdir -p /dev/shm/$folder_name_RAM/
+        WINEDLLOVERRIDES="mscoree=d;mshtml=d" WINEPREFIX=/dev/shm/Deffy "$HERE"/AppRun_2 "$HERE"/Deffy.exe
+        rm -r /dev/shm/$folder_name_RAM/' > AppRun
         chmod +x AppRun
 
         cd ../
