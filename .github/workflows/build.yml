@@ -65,10 +65,6 @@ jobs:
 
         echo '#!/bin/bash
         HERE=$(cd "${0%/*}" && echo $PWD)
-        echo "HOME: $HOME"
-        if [ "$HOME" != "" ]; then # If use --appimage-portable-home
-            mkdir "$HOME/.config/"
-        fi
 
         folder_name_RAM="Deffy_AppImage_$(date +%d_%m_%Y)"
         mkdir -p /dev/shm/$folder_name_RAM/
