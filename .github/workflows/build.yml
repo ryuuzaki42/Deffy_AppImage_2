@@ -58,17 +58,10 @@ jobs:
         mv AppRun.env AppRun_2.env
         sed -i 's/.wine-appimage-stable/.config\/Deffy_AppImage/g' wrapper # Change config folder
 
-        # remove 32 bits
+        # Remove 32 bits
         cd opt/wine-stable/lib/wine/
         rm -r i386-windows/
         cd ../../../../
-
-        # Wine - Disable core fonts installer
-        # WINEDLLOVERRIDES="mscoree=d;mshtml=d"
-
-        # Prefix in RAM - zero disk footprint
-        # mkdir -p /dev/shm/wine
-        # WINEPREFIX=/dev/shm/wine
 
         echo '#!/bin/bash
         set -x
@@ -80,7 +73,7 @@ jobs:
 
         folder_name_RAM="Deffy_AppImage_$(date +%d_%m_%Y)"
         mkdir -p /dev/shm/$folder_name_RAM/
-        WINEDLLOVERRIDES="mscoree=d;mshtml=d" WINEPREFIX=/dev/shm/Deffy "$HERE"/AppRun_2 "$HERE"/Deffy.exe
+        WINEDLLOVERRIDES="mscoree=d;mshtml=d" WINEPREFIX=/dev/shm/$folder_name_RAM "$HERE"/AppRun_2 "$HERE"/Deffy.exe
         rm -r /dev/shm/$folder_name_RAM/' > AppRun
         chmod +x AppRun
 
