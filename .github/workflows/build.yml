@@ -41,22 +41,22 @@ jobs:
         set -x
         tag=1 #1
         version=$(grep -o "Deffy:.*" README.md | cut -d ' ' -f2)
-        echo "Deffy version: $version"
+        echo "Deffy version: $version - Tag: $tag"
 
         #cp Deffy.desktop AppDir/
         #cp Deffy.png AppDir/
         #cp Deffy.exe AppDir/
 
         cd AppDir/
-        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/${version}_0_exe/Deffy.desktop
+        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.desktop
         wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.png
-        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.exe
+        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/${version}_0_exe/Deffy.exe
         pwd; ls -lah
         rm .DirIcon wine.svg org.winehq.wine.desktop
 
         mv AppRun AppRun_2
         mv AppRun.env AppRun_2.env
-        sed -i 's/.wine-appimage-stable/.config\/Deffy_AppImage/g' wrapper # Change config folder
+        #sed -i 's/.wine-appimage-stable/.config\/Deffy_AppImage/g' wrapper # Change config folder
 
         # Remove 32 bits
         cd opt/wine-stable/lib/wine/
@@ -64,7 +64,6 @@ jobs:
         cd ../../../../
 
         echo '#!/bin/bash
-        set -x
         HERE=$(cd "${0%/*}" && echo $PWD)
         echo "HOME: $HOME"
         if [ "$HOME" != "" ]; then # If use --appimage-portable-home
