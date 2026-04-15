@@ -57,6 +57,14 @@ jobs:
         mv AppRun.env AppRun_2.env
         sed -i 's/.wine-appimage-stable/.config\/Deffy_AppImage/g' wrapper # Change config folder
 
+        # remove 32 bits
+        cd opt/wine-stable/lib/wine/
+        rm -r i386-windows/
+        cd ../../../../
+
+        # Wine - Disable core fonts installer
+        # WINEDLLOVERRIDES="mscoree=d;mshtml=d"
+
         echo '#!/bin/bash
         set -x
         HERE=$(cd "${0%/*}" && echo $PWD)
