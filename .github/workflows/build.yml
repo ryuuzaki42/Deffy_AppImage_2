@@ -42,9 +42,14 @@ jobs:
         version=$(grep -o "Deffy:.*" README.md | cut -d ' ' -f2)
         echo "Deffy version: $version"
 
-        cp Deffy.desktop AppDir/
-        cp Deffy.png AppDir/
-        cp Deffy.exe AppDir/
+        #cp Deffy.desktop AppDir/
+        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.desktop
+
+        #cp Deffy.png AppDir/
+        wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.png
+
+        #cp Deffy.exe AppDir/
+        wget https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.exe
 
         cd AppDir/
         pwd; ls -lah
