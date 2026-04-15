@@ -64,7 +64,7 @@ jobs:
         if [ "$HOME" != "" ]; then # If use --appimage-portable-home
             mkdir "$HOME/.config/"
         fi
-        "$HERE"/AppRun_2 "$HERE"/Deffy.exe' > AppRun
+        WINEDLLOVERRIDES="mscoree=d;mshtml=d" "$HERE"/AppRun_2 "$HERE"/Deffy.exe' > AppRun
         chmod +x AppRun
 
         cd ../
