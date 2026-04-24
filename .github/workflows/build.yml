@@ -20,7 +20,6 @@ jobs:
     - name: Get appimagetool
       run: |
         set -x
-        #wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         version_go_appimage=$(wget -q -O - https://api.github.com/repos/probonopd/go-appimage/releases | grep "\"name.*appimagetool-.*-x86_64.AppImage\"" | head -n 1 | cut -d '-' -f2)
         echo "version_go_appimage: $version_go_appimage"
         wget -q "https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-$version_go_appimage-x86_64.AppImage" -O appimagetool-x86_64.AppImage
@@ -43,11 +42,9 @@ jobs:
         version=$(grep -o "Deffy:.*" README.md | cut -d ' ' -f2)
         echo "Deffy version: $version - Tag: $tag"
 
-        #cp Deffy.desktop AppDir/
-        #cp Deffy.png AppDir/
-        #cp Deffy.exe AppDir/
-
+        cp README.md squashfs-root/
         cd AppDir/
+
         wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.desktop
         wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/6.0.0_0_exe/Deffy.png
         wget -q https://github.com/ryuuzaki42/Deffy_AppImage_2/releases/download/${version}_0_exe/Deffy.exe
@@ -76,7 +73,7 @@ jobs:
         ARCH=x86_64 VERSION="${version}-${tag}_JB" ./appimagetool-x86_64.AppImage AppDir/
         pwd; ls -lah
 
-    - name: Rename AppImage and generate MD5
+    - name: Generate MD5
       run: |
         set -x
         fileName=$(ls Deffy*.AppImage)
